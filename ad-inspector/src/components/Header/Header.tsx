@@ -5,7 +5,7 @@ import logo from "../../assets/icons/logo.png";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const navRef = useRef(null);
+  const navRef = useRef<HTMLElement>(null);
 
   const toggleMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -14,14 +14,14 @@ export default function Header() {
 
   // Закрытие меню при клике вне
   useEffect(() => {
-    const handleClickOutside = (e) => {
+    const handleClickOutside = (e: MouseEvent) => {
       const navEl = navRef.current;
-      const btnEl = document.querySelector(".mobile-menu-btn");
+      const btnEl = document.querySelector<HTMLButtonElement>(".mobile-menu-btn");
 
       if (!navEl || !btnEl) return;
 
       // Клик вне меню и вне кнопки
-      if (menuOpen && !navEl.contains(e.target) && !btnEl.contains(e.target)) {
+      if (menuOpen && !navEl.contains(e.target as Node) && !btnEl.contains(e.target as Node)) {
         setMenuOpen(false);
       }
     };
@@ -46,13 +46,13 @@ export default function Header() {
   }, []);
 
   // Smooth scroll
-  const scrollToSection = (e, id) => {
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const el = document.querySelector(id);
     if (!el) return;
     window.scrollTo({
-      top: el.offsetTop - 80,
-      behavior: "smooth",
+      top: (el as HTMLElement).offsetTop - 80,
+      behavior: "smooth" as ScrollBehavior,
     });
     setMenuOpen(false);
   };
@@ -63,7 +63,7 @@ export default function Header() {
         {/* Логотип */}
         <a className="logo" href="#title" onClick={(e) => scrollToSection(e, "#title")}>
           <div className="logo-icon">
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="АД-Инспектор логотип" />
           </div>
           <div className="logo-text">
             АД<span>-Инспектор</span>
@@ -82,26 +82,31 @@ export default function Header() {
               <a href="#solution" onClick={(e) => scrollToSection(e, "#solution")}>
                 Технология
               </a>
+              <div className="custom-line" />
             </li>
             <li>
               <a href="#dashboard" onClick={(e) => scrollToSection(e, "#dashboard")}>
                 Интерфейс
               </a>
+              <div className="custom-line" />
             </li>
             <li>
               <a href="#benefits" onClick={(e) => scrollToSection(e, "#benefits")}>
                 Преимущества
               </a>
+              <div className="custom-line" />
             </li>
             <li>
               <a href="#industries" onClick={(e) => scrollToSection(e, "#industries")}>
                 Отрасли
               </a>
+              <div className="custom-line" />
             </li>
             <li>
               <a href="#cta" onClick={(e) => scrollToSection(e, "#cta")}>
                 Оставить заявку
               </a>
+              <div className="custom-line" />
             </li>
           </ul>
         </nav>

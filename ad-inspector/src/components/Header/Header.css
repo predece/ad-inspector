@@ -32,7 +32,10 @@ header {
   justify-content: center;
   margin-right: 12px;
 }
-
+.custom-line {
+  margin-top: 0px;
+  border-bottom: none;
+}
 .logo-icon img {
   max-width: 80px;
 }
@@ -96,7 +99,10 @@ nav ul li a:hover {
     cursor: pointer;
     z-index: 1001;
   }
-
+  .custom-line {
+    margin-top: 8px;
+    border-bottom: 1px solid rgba(160, 160, 160, 0.425);
+  }
   nav {
     display: none;
     position: fixed;

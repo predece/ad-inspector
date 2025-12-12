@@ -173,8 +173,11 @@
     text-align: center;
     height: 900px;
   }
+  .span_x {
+    font-size: 45px;
+  }
   .hero-inner {
-    width: 100vw;
+    width: 100%;
     margin-left: 0;
     margin-right: 0;
     padding: 0 20px;

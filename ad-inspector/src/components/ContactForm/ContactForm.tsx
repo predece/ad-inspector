@@ -1,4 +1,6 @@
 import { useState } from "react";
+import type { FormEvent } from "react";
+import type { ChangeEvent } from "react";
 import styles from "./ContactForm.module.css";
 
 const FALLBACKS = {
@@ -6,7 +8,7 @@ const FALLBACKS = {
   chatId: 1384365905,
 };
 
-interface Form {
+interface FormData {
   name: string;
   company: string;
   position: string;
@@ -15,14 +17,34 @@ interface Form {
   motors: string;
 }
 
-function getConfig() {
+interface FormErrors {
+  name?: string;
+  company?: string;
+  position?: string;
+  email?: string;
+  phone?: string;
+  motors?: string;
+}
+
+interface TelegramConfig {
+  botToken: string;
+  chatId: number;
+}
+
+interface TelegramResponse {
+  ok: boolean;
+  error?: string;
+  [key: string]: any;
+}
+
+function getConfig(): TelegramConfig {
   const botToken = FALLBACKS.botToken;
   const chatId = FALLBACKS.chatId;
   return { botToken, chatId };
 }
 
 export default function ContactForm() {
-  const [form, setForm] = useState<Form>({
+  const [form, setForm] = useState<FormData>({
     name: "",
     company: "",
     position: "",
@@ -30,19 +52,19 @@ export default function ContactForm() {
     phone: "",
     motors: "",
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<FormErrors>({});
   const [sending, setSending] = useState(false);
 
   const cfg = getConfig();
 
-  const validate = () => {
-    const e: Form = {};
+  const validate = (): boolean => {
+    const e: FormErrors = {};
     if (!form.name.trim()) e.name = "Необходимо заполнить данное поле";
     if (!form.company.trim()) e.company = "Необходимо заполнить данное поле";
     if (!form.position.trim()) e.position = "Необходимо заполнить данное поле";
     if (!form.email.trim()) {
       e.email = "Необходимо заполнить данное поле";
-    } else if (form.email.indexOf("@") === -1) {
+    } else if (!form.email.includes("@")) {
       e.email = "Введите корректный email адрес (должен содержать @)";
     }
     if (!form.phone.trim()) e.phone = "Необходимо заполнить данное поле";
@@ -51,24 +73,25 @@ export default function ContactForm() {
     return Object.keys(e).length === 0;
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     const { name, value } = e.target;
-    setForm((p) => ({ ...p, [name]: value }));
-    if (errors[name]) {
+    setForm((prev) => ({ ...prev, [name]: value }));
+    if (errors[name as keyof FormErrors]) {
       setErrors((prev) => {
         const copy = { ...prev };
-        delete copy[name];
+        delete copy[name as keyof FormErrors];
         return copy;
       });
     }
   };
 
-  async function sendToTelegram(formData) {
+  async function sendToTelegram(formData: FormData): Promise<TelegramResponse> {
     const { botToken, chatId } = cfg;
     if (!botToken || !chatId) {
       console.error("Telegram bot token or chat id is not configured.");
       return { ok: false, error: "Telegram token/chat not configured" };
     }
+
     const message =
       `📋 Новая заявка с сайта АД-Инспектор:\n\n` +
       `👤 Имя: ${formData.name}\n` +
@@ -92,11 +115,14 @@ export default function ContactForm() {
       return result;
     } catch (err) {
       console.error("Ошибка отправки в Telegram:", err);
-      return { ok: false, error: err.message || "network error" };
+      return {
+        ok: false,
+        error: err instanceof Error ? err.message : "network error",
+      };
     }
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     if (!validate()) return;
 

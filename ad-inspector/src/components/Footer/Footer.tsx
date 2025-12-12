@@ -1,17 +1,19 @@
+import type { MouseEvent } from "react";
 import styles from "./Footer.module.css";
 import logo from "../../assets/icons/logo.png";
+
 export default function Footer() {
-  const scrollToSection = (e, id) => {
+  const scrollToSection = (e: MouseEvent<HTMLAnchorElement>, id: string): void => {
     e.preventDefault();
     const el = document.querySelector(id);
     if (!el) return;
     window.scrollTo({
-      top: el.offsetTop - 80,
-      behavior: "smooth",
+      top: (el as HTMLElement).offsetTop - 80,
+      behavior: "smooth" as ScrollBehavior,
     });
   };
 
-  const handleLinkClick = (e, sectionId) => {
+  const handleLinkClick = (e: MouseEvent<HTMLAnchorElement>, sectionId: string): void => {
     e.preventDefault();
     scrollToSection(e, sectionId);
   };
@@ -24,7 +26,7 @@ export default function Footer() {
         <div className={styles.footerleft}>
           <div className={styles.footerLogo}>
             <div>
-              <img className={styles.logo} src={logo} />
+              <img className={styles.logo} src={logo} alt="АД-Инспектор логотип" />
             </div>
             <div>
               {"АД-"}
@@ -44,10 +46,7 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a
-                href="#dashboard" // Предполагаю, что у вас есть id="dashboard" для раздела с интерфейсом
-                onClick={(e) => handleLinkClick(e, "#dashboard")}
-              >
+              <a href="#dashboard" onClick={(e) => handleLinkClick(e, "#dashboard")}>
                 Интерфейс
               </a>
             </li>
