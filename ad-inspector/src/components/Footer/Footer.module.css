@@ -1,0 +1,348 @@
+.footer {
+  background: #0a5933;
+  font-family: "Inter", sans-serif;
+  padding: 40px 0 20px;
+  color: white;
+}
+
+/* Контейнер */
+.footerContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Левая часть */
+.footerLogo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Source Serif Pro", serif;
+  font-size: 30px;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.customText {
+  color: black; /* Изменил на золотой для лучшей читаемости */
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+}
+
+.line {
+  margin: 30px 0;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.footerDesc {
+  max-width: 330px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+}
+
+/* Колонка ссылок */
+.footerCenter h4,
+.footerRight h4 {
+  font-size: 18px;
+  margin-bottom: 14px;
+  color: white; /* Золотой для заголовков */
+}
+
+.footerLinks {
+  list-style: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLinks li {
+  margin-bottom: 8px;
+}
+
+.footerLinks a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 15px;
+}
+
+.footerLinks a:hover {
+  color: black;
+}
+
+/* Правая колонка */
+.footerEmail a,
+.footerPhone a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.footerLocation {
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+}
+
+/* Нижняя часть футера */
+.footerBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footerBottom p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 10px;
+}
+
+.footerPrivacy {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.footerPrivacy:hover {
+  color: black;
+}
+
+/* ============================== */
+/* МОБИЛЬНАЯ АДАПТАЦИЯ */
+/* ============================== */
+
+/* Планшеты (900px и меньше) */
+@media (max-width: 900px) {
+  .footerContainer {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 0 30px;
+  }
+
+  .footerLogo {
+    font-size: 26px;
+  }
+
+  .logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .footerDesc {
+    font-size: 14px;
+  }
+}
+
+/* Большие смартфоны (768px и меньше) */
+@media (max-width: 768px) {
+  .footer {
+    padding: 30px 0 15px;
+  }
+
+  .footerContainer {
+    padding: 0 25px;
+    gap: 15px;
+  }
+
+  .footerLogo {
+    font-size: 24px;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  .footerDesc {
+    font-size: 14px;
+    text-align: center;
+    max-width: 100%;
+  }
+}
+
+/* Средние смартфоны (600px и меньше) */
+@media (max-width: 600px) {
+  .footerContainer {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .footerLogo {
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .footerDesc {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .footerCenter h4,
+  .footerRight h4 {
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+
+  .footerLinks a,
+  .footerEmail a,
+  .footerPhone a,
+  .footerLocation {
+    font-size: 14px;
+  }
+
+  .footerLinks li {
+    margin-bottom: 10px;
+  }
+
+  .customlinetwo {
+    margin: 30px 20px;
+  }
+}
+
+/* Маленькие смартфоны (480px и меньше) */
+@media (max-width: 480px) {
+  .footer {
+    padding: 25px 0 15px;
+  }
+  .footerCenter li {
+    display: grid;
+  }
+  .footerContainer {
+    padding: 0 15px;
+    gap: 10px;
+  }
+
+  .footerLogo {
+    font-size: 22px;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .footerCenter h4,
+  .footerRight h4 {
+    font-size: 26px;
+  }
+
+  .footerLinks a,
+  .footerEmail a,
+  .footerPhone a,
+  .footerLocation {
+    font-size: 18px;
+  }
+
+  .footerBottom {
+    padding: 15px;
+  }
+
+  .footerBottom p,
+  .footerPrivacy {
+    font-size: 13px;
+  }
+
+  .customlinetwo {
+    margin: 25px 15px;
+  }
+  .footerDesc {
+    font-size: 16px;
+  }
+}
+
+/* Очень маленькие смартфоны (360px и меньше) */
+@media (max-width: 360px) {
+  .footerContainer {
+    padding: 0 12px;
+    gap: 20px;
+  }
+
+  .footerLogo {
+    font-size: 20px;
+  }
+
+  .logo {
+    width: 45px;
+    height: 45px;
+  }
+
+  .footerDesc {
+    font-size: 16px;
+  }
+
+  .footerLinks li {
+    margin-bottom: 8px;
+  }
+}
+
+/* ============================== */
+/* ДОПОЛНИТЕЛЬНЫЕ ИСПРАВЛЕНИЯ */
+/* ============================== */
+
+/* Исправляем проблему с горизонтальным скроллом */
+@media (max-width: 1200px) {
+  .footerContainer,
+  .customlinetwo {
+    max-width: 100%;
+  }
+}
+
+/* Делаем ссылки и кнопки удобными для касания */
+@media (max-width: 768px) {
+  .footerLinks a,
+  .footerEmail a,
+  .footerPhone a,
+  .footerPrivacy {
+    padding: 5px 0;
+    display: inline-block;
+    min-height: 44px; /* Минимальная высота для удобного касания */
+    line-height: 34px; /* Центрируем текст по вертикали */
+  }
+
+  .footerLinks li {
+    margin-bottom: 5px;
+  }
+}
+
+/* Оптимизация для landscape режима */
+@media (max-height: 500px) and (orientation: landscape) {
+  .footer {
+    padding: 20px 0 10px;
+  }
+
+  .footerContainer {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .footerLogo {
+    flex-direction: row;
+    font-size: 18px;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
+}

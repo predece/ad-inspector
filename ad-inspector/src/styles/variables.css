@@ -1,0 +1,30 @@
+:root {
+  --primary-green: #0a5933;
+  --green-dark: #074326;
+  --green-light: #2e8b57;
+  --green-accent: #4caf50;
+  --success-green: #27ae60;
+  --warning-orange: #f39c12;
+  --danger-red: #e74c3c;
+  --gray-dark: #1a1a1a;
+  --gray-medium: #4a4a4a;
+  --gray-light: #f8f9fa;
+  --beige-light: #f5f1eb;
+  --white: #ffffff;
+  --shadow: 0 4px 12px rgba(10, 89, 51, 0.08);
+  --shadow-hover: 0 8px 24px rgba(10, 89, 51, 0.39);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--white);
+  color: var(--gray-dark);
+  overflow-x: hidden;
+}
